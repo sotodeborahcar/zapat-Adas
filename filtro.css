@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: rgba(226, 226, 226, 1);
+  display: flex;
+  justify-content: center;
+  font-family: "Muli", sans-serif;
+}
+
+.contenedor {
+  width: 60%;
+  background-color: rgb(245, 241, 245);
+  margin-top: 10px;
+}
+
+.barra {
+  height: 60px;
+  background: rgb(103, 2, 86);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding-left: 12px;
+}
+
+form {
+  width: 96%;
+  display: flex;
+}
+
+input,
+select {
+  flex: 1;
+  height: 30px;
+  background-color: white;
+  font-size: 15px;
+  border: none;
+  margin-right: 10px;
+}
+
+button {
+  width: 60px;
+  height: 30px;
+  background-color: #b7e8f4;
+  border: none;
+  color: #240041;
+}
+
+button:active {
+  background-color: #240041;
+  color: white;
+}
+
+button:hover {
+  background-color: rgb(240, 38, 230);
+  color: rgb(254, 252, 252);
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bold;
+}
+
+.cuerpo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cuerpo h1 {
+  font-size: 40px;
+  font-weight: bold;
+  color: #240041;
+}
+
+.cuerpo h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #240041;
+}
+
+#lista-de-productos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 40px;
+}
+
+.contenedorProducto {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.foto {
+  width: 180px;
+  padding: 5px 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  background-color: white;
+}
+
+.foto img {
+  width: 100%;
+  height: auto;
+}
+.foto:hover img {
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+
+.titulo {
+  width: 180px;
+  height: 30px;
+  background-color: #4c0288;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  color: white;
+}
+
+@media screen and (max-width: 650px) {
+  .contenedor {
+    width: 90%;
+  }
+  input {
+    width: 70%;
+  }
+}
