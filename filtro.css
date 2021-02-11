@@ -40,9 +40,9 @@ select {
 button {
   width: 60px;
   height: 30px;
-  background-color: #b7e8f4;
+  background-color: #030303;
   border: none;
-  color: #240041;
+  color: #fffeff;
 }
 
 button:active {

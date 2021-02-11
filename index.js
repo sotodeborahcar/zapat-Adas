@@ -65,6 +65,7 @@ productos.forEach((zapato) => {
 
 form.onsubmit = (e) => {
   e.preventDefault(); // me permite que el form no se envie de una, y se pierdan los datos
+  // window.navigateTo("www.falsobanco.com") // => envia el formulario a una direccion distinta a la que se muestra
   validadDatos();
 };
 
@@ -72,7 +73,7 @@ const filtro = document.querySelector("#filtro");
 const selectTipo = document.querySelector("#tipo");
 const selectColor = document.querySelector("#color");
 
-// selectColor.onchange = () => {
+// selectColor.onchange = () => { // permite que la busqueda sea al momento de buscar y sin tener que hacer click en el boton filtrar
 //   validadDatos();
 // };
 
@@ -81,7 +82,49 @@ const validadDatos = () => {
   console.log(selectTipo.value); // me muestra en la consola lo que se selecciono
   console.log(selectColor.value); // idem al anterior con .value
 
-  const zapatosFiltrados = productos.filter((zapato) => {
+  // const zapatosFiltradosPorTexto = productos.filter((zapato) => {
+  //   if (!filtro.value) {
+  //     // ! significa si no existe
+  //     return zapato;
+  //   }
+  //   return filtro.value === zapato.tipo || filtro.value === zapato.color;
+  // });
+
+  // // copia del array productos:
+
+  // const zapatosFiltradosPorSelect = zapatosFiltradosPorTexto.filter(
+  //   (zapato) => {
+  //     if (selectTipo.value && selectColor.value) {
+  //       // si selectTipo.value existe...y tambien selectColor.value... retornar tal cosa
+  //       return (
+  //         selectTipo.value === zapato.tipo && selectColor.value === zapato.color
+  //       );
+  //     } else if (selectTipo.value) {
+  //       return selectTipo.value === zapato.tipo;
+  //     } else if (selectColor.value) {
+  //       return selectColor.value === zapato.color;
+  //     } else {
+  //       return zapato;
+  //     }
+  //   }
+  // );
+  // " " => false
+  // "cualquier cosa" => true
+
+  // ==> 🟡 🟡 🟡 FORMA MAS CORRECTA DE ESCRIBIR EL CODIGO 🟡 🟡 🟡 <==
+
+  // FILTRO EL ARRAY POR EL INPUT:
+
+  const filtrarPorInput = (zapato) => {
+    if (!filtro.value) {
+      return zapato;
+    }
+    return filtro.value === zapato.tipo || filtro.value === zapato.color;
+  };
+
+  // FILTRO EL ARRAY POR LOS SELECT DE COLOR Y TIPO:
+
+  const filtrarPorSelect = (zapato) => {
     if (selectTipo.value && selectColor.value) {
       return (
         selectTipo.value === zapato.tipo && selectColor.value === zapato.color
@@ -93,28 +136,21 @@ const validadDatos = () => {
     } else {
       return zapato;
     }
-  });
-  // " " => false
-  // "cualquier cosa" => true
+  };
 
-  const filtrarXNombre = productos.filter((zapato) => {
-    if (filtro.value && selectTipo.value && selectColor) {
-      return (
-        filtro.value === zapato.nombre &&
-        selectTipo.value === zapato.tipo &&
-        selectColor.value === zapato.color
-      );
-    } else if (filtro.value.includes(zapato.nombre.toLowerCase())) {
-      return filtro.value;
-    }
-  });
-  //console.log(filtrarXNombre);
+  // CONCATENADO DE AMBOS FILTROS:
 
-  console.log(zapatosFiltrados);
+  const zapatosFiltrados = productos
+    .filter(filtrarPorInput)
+    .filter(filtrarPorSelect);
 
-  listado.innerHTML = "";
+  console.log(zapatosFiltrados); // muestro los zapatos filtrados arriba
 
+  // UNION DE JS Y HTML:
+
+  listado.innerHTML = ""; // limpio el HTML para que no se vean los zapatos anteriores no filtrados
   zapatosFiltrados.forEach((zapato) => {
+    // recorro el array nuevo creado "zapatosFiltradosPorSelect"
     listado.innerHTML += `
     <div class="contenedorProducto">
     <div class="foto"><img src="${zapato.img}"></div>
